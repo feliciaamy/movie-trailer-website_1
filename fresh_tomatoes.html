@@ -1,0 +1,164 @@
+
+<head>
+    <meta charset="utf-8">
+    <title>Fresh Tomatoes!</title>
+
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <style type="text/css" media="screen">
+        body {
+            padding-top: 80px;
+        }
+        #trailer .modal-dialog {
+            margin-top: 200px;
+            width: 640px;
+            height: 380px;
+        }
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        #trailer-video {
+            width: 100%;
+            height: 100%;
+        }
+        .movie-tile {
+            margin-bottom: 20px;
+            padding-top: 20px;
+        }
+        .movie-tile:hover {
+            background-color: #EEE;
+            cursor: pointer;
+        }
+        .scale-media {
+            padding-bottom: 0%;
+            position: relative;
+        }
+        // Frame of the trailer
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: white;
+        }
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty()
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.movie-tile', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1'
+            var detail = $(this).attr('movie-detail')
+            var rank = $(this).attr('movie-rank')
+            var title = $(this).attr('movie-title');
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+	   document.getElementById("movie-detail").innerHTML = detail
+	   document.getElementById("movie-rank").innerHTML = rank
+	   document.getElementById("movie-title").innerHTML = title;
+        });
+        // Animate in the movies when the page loads
+        $(document).ready(function () {
+          $('.movie-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+    </script>
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="scale-media" id="trailer-video-container">
+          </div>
+          <h3><div id="movie-title"></div></h3>
+          <h4><div id ="movie-rank"></div></h4>
+          <p><div id="movie-detail"></div></p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Main Page Content -->
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Felicia Amy's Movie Trailers</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="5PSNL1qE6VY" data-toggle="modal" data-target="#trailer" movie-title="Avatar (PG-13)" movie-rank="(7.9/10)" movie-detail="On the lush alien world of Pandora live the Na'vi, beings who appear primitive but are highly evolved. Because the planet's environment is poisonous, human/Na'vi hybrids, called Avatars, must link to human minds to allow for free movement on Pandora. Jake Sully (Sam Worthington), a paralyzed former Marine, becomes mobile again through one such Avatar and falls in love with a Na'vi woman (Zoe Saldana). As a bond with her grows, he is drawn into a battle for the survival of her world.">
+    <img src="http://www.impawards.com/2009/posters/avatar.jpg" width="220" height="342">
+    <h2>Avatar (PG-13)</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="KYz2wyBy3kc" data-toggle="modal" data-target="#trailer" movie-title="Toy Story (G)" movie-rank="(8.3/10)" movie-detail="Woody (Tom Hanks), a good-hearted cowboy doll who belongs to a young boy named Andy (John Morris), sees his position as Andy's favorite toy jeopardized when his parents buy him a Buzz Lightyear (Tim Allen) action figure. Even worse, the arrogant Buzz thinks he's a real spaceman on a mission to return to his home planet. When Andy's family moves to a new house, Woody and Buzz must escape the clutches of maladjusted neighbor Sid Phillips (Erik von Detten) and reunite with their boy.">
+    <img src="http://www.impawards.com/1995/posters/toy_story_ver1.jpg" width="220" height="342">
+    <h2>Toy Story (G)</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="4S9a5V9ODuY" data-toggle="modal" data-target="#trailer" movie-title="The Hunger Games (PG-13)" movie-rank="(6.8/10)" movie-detail="Katniss Everdeen voluntarily takes her younger sister's place in the Hunger Games, a televised fight to the death in which two teenagers from each of the twelve Districts of Panem are chosen at random to compete.">
+    <img src="http://www.film.com/wp-content/uploads/2011/07/Hunger-Games-Teaser-Poster-Large.jpg" width="220" height="342">
+    <h2>The Hunger Games (PG-13)</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="79cWig36XJc" data-toggle="modal" data-target="#trailer" movie-title="Good Luck Chuck (R)" movie-rank="(5.6/10)" movie-detail="In order to keep the woman of his dreams from falling for another guy, Charlie Logan has to break the curse that has made him wildly popular with single women: Sleep with Charlie once, and the next man you meet will be your true love.">
+    <img src="http://www.impawards.com/2007/posters/good_luck_chuck_ver4_xlg.jpg" width="220" height="342">
+    <h2>Good Luck Chuck (R)</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="sutgWjz10sM" data-toggle="modal" data-target="#trailer" movie-title="Divergent (PG-13)" movie-rank="(6.8/10)" movie-detail="In a world divided by factions based on virtues, Tris learns she's Divergent and won't fit in. When she discovers a plot to destroy Divergents, Tris and the mysterious Four must find out what makes Divergents dangerous before it's too late.">
+    <img src="https://s-media-cache-ak0.pinimg.com/736x/ff/7c/5b/ff7c5b7a3100e0c9665dccea73553e9b.jpg" width="220" height="342">
+    <h2>Divergent (PG-13)</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="9ItBvH5J6ss" data-toggle="modal" data-target="#trailer" movie-title="The Fault in Our Star (PG-13)" movie-rank="(7.9/10)" movie-detail="Two teens, both who have different cancer conditions, fall in love after meeting at a cancer support group.">
+    <img src="http://s3-ec.buzzfed.com/static/2013-12/enhanced/webdr03/17/19/enhanced-buzz-wide-27489-1387325176-9.jpg" width="220" height="342">
+    <h2>The Fault in Our Star (PG-13)</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="_MC3XuMvsDI" data-toggle="modal" data-target="#trailer" movie-title="Inside Out (PG)" movie-rank="(9.1/10)" movie-detail="After young Riley is uprooted from her Midwest life and moved to San Francisco, her emotions - Joy, Fear, Anger, Disgust and Sadness - conflict on how best to navigate a new city, house and school.">
+    <img src="http://media.aintitcool.com/media/uploads/2015/nordling/insideoutposter.jpg" width="220" height="342">
+    <h2>Inside Out (PG)</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="pkqzFUhGPJg" data-toggle="modal" data-target="#trailer" movie-title="Up (PG)" movie-rank="(8.3/10)" movie-detail="To avoid being taken away to a nursing home, an old widower tries to fly his home to Paradise Falls, South America, along with a boy scout who accidentally lifted off with him.">
+    <img src="http://www.movie-poster-artwork-finder.com/posters/up-poster-artwork-edward-asner-christopher-plummer-jordan-nagai.jpg" width="220" height="342">
+    <h2>Up (PG)</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="gsYKF8ecC8g" data-toggle="modal" data-target="#trailer" movie-title="Tangled (PG)" movie-rank="(7.8/10)" movie-detail="The magically long-haired Rapunzel has spent her entire life in a tower, but now that a runaway thief has stumbled upon her, she is about to discover the world for the first time, and who she really is.">
+    <img src="http://img3.wikia.nocookie.net/__cb20130828020844/disney/images/4/4b/Tangled_poster_c.jpg" width="220" height="342">
+    <h2>Tangled (PG)</h2>
+</div>
+
+    </div>
+  </body>
+</html>
